@@ -100,8 +100,18 @@ def main():
         st.balloons()
         st.markdown("<div style='text-align: center; margin-top: 40px;'>", unsafe_allow_html=True)
         st.title("🏆 미션 클리어!")
-        st.markdown(f"<h2 style='color: #ff4757; margin-bottom: 30px;'>최종 점수: {st.session_state.score} / {total}</h2>", unsafe_allow_html=True)
+        st.markdown(f"<h2 style='color: #ff4757; margin-bottom: 10px;'>최종 점수: {st.session_state.score} / {total}</h2>", unsafe_allow_html=True)
+        
+        # 점수별 등급 메시지 추가
+        if st.session_state.score == total:
+            st.markdown("<p style='font-size: 1.2rem; font-weight: 700; color: #2ed573;'>등급: 공구 마스터 🏆</p><p style='color: #747d8c;'>모든 공구를 완벽하게 마스터하셨습니다!</p>", unsafe_allow_html=True)
+        elif st.session_state.score >= total // 2:
+            st.markdown("<p style='font-size: 1.2rem; font-weight: 700; color: #1e90ff;'>등급: 준 전문가 👍</p><p style='color: #747d8c;'>훌륭합니다! 조금만 더 하면 마스터가 될 수 있어요.</p>", unsafe_allow_html=True)
+        else:
+            st.markdown("<p style='font-size: 1.2rem; font-weight: 700; color: #ffa502;'>등급: 입문자 💪</p><p style='color: #747d8c;'>아직 공구가 낯선가요? 다시 한 번 도전해 보세요!</p>", unsafe_allow_html=True)
+        
         st.markdown("</div>", unsafe_allow_html=True)
+        st.write("") # 간격
         
         col1, col2 = st.columns(2)
         with col1:
